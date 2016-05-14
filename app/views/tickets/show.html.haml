@@ -25,24 +25,27 @@
     .col-md-2
       %strong Payment
     .col-md-3
-      -if @ticket.price?
-        =@ticket.price
-        EUR
-      -if @ticket.paid?
-        %span.glyphicon.glyphicon-ok
-      -else
-        %span.label.label-danger Not Paid
+      .row
+        .col-md-6
+          -if @ticket.price?
+            =@ticket.price
+            EUR
+        .col-md-4
+          -if @ticket.paid?
+            %span.glyphicon.glyphicon-ok
+          -else
+            %span.label.label-danger Not Paid
 .well
   .row
     -if @ticket.checked_in_at?
       .col-md-2
         %strong Checked In
       .col-md-3
-        %h4
-          %span.label.label-success.label-lg
+        .row
+          .col-md-6
             =l @ticket.checked_in_at, format: :short
-            %span.glyphicon.glyphicon-ok
-        =button_to "Check Out", ticket_check_out_path(@ticket), class: "btn btn-default"
+          .col-md-4
+            =button_to "Check Out", ticket_check_out_path(@ticket), class: "btn btn-default btn-xs"
     -else
       .col-md-5
         =button_to "Check In Now", ticket_check_in_path(@ticket), class: "btn btn-warning btn-lg"

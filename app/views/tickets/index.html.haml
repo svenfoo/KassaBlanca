@@ -1,2 +1,15 @@
-%h1 Tickets#index
-%p Find me in app/views/tickets/index.html.haml
+%h1 All Tickets
+%table.table.table-striped
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th Email
+      %th
+  -@tickets.each do |ticket|
+    %tr
+      %th=ticket.id
+      %td=ticket.name
+      %td=ticket.email
+      %td
+        =link_to "Details", ticket

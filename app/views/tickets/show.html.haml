@@ -1,0 +1,16 @@
+%h1= "Booking ID #{@ticket.id}"
+=@ticket.name
+%br
+=@ticket.email
+%br
+=@ticket.password
+%br
+=@ticket.paid
+%br
+-if @ticket.checked_in_at
+  Checked in
+  =l @ticket.checked_in_at, format: :short
+-else
+  =link_to "Check In Now", ticket_check_in_path(@ticket)
+%br
+=link_to "All Tickets", tickets_path

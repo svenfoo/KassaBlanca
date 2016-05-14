@@ -24,6 +24,7 @@ namespace :KassaBlanca do
         t.name = row[1]
         t.email = row[2]
         t.price = row[3][1..-1].to_i
+        t.pseudonym = row[4]
         t.password = row[5]
         t.save
 

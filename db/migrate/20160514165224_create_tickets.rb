@@ -5,7 +5,7 @@ class CreateTickets < ActiveRecord::Migration
       t.string :name
       t.string :password
       t.integer :price
-      t.boolean :paid
+      t.boolean :paid, null: false, default: false
       t.datetime :checked_in_at
       t.text :notes
 

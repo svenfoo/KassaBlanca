@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 20160514165224) do
     t.string   "name"
     t.string   "password"
     t.integer  "price"
-    t.boolean  "paid"
+    t.boolean  "paid",          default: false, null: false
     t.datetime "checked_in_at"
     t.text     "notes"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end

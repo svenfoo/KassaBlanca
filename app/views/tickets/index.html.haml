@@ -1,10 +1,17 @@
-%h1 All Tickets
+-if @query
+  %h1= "Tickets matching '#{@query}'"
+-else
+  %h1 All Tickets
+
 .jumbotron
   = form_tag(tickets_path,method: :get) do
     .form-group
       %input.form-control{ name: 'query', type: "text", placeholder: 'Search for anything' }
       %button.btn.btn-lg.btn-default{ type: "submit" }
         Search
+  -if @query
+    =link_to "Clear query and show all tickets", tickets_path
+
 %table.table.table-striped
   %thead
     %tr

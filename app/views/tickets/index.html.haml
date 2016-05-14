@@ -5,10 +5,13 @@
 
 .jumbotron
   = form_tag(tickets_path,method: :get) do
-    .form-group
-      %input.form-control{ name: 'query', type: "text", placeholder: 'Search for anything' }
-      %button.btn.btn-lg.btn-default{ type: "submit" }
-        Search
+    .row
+      .col-md-9
+        .form-group
+          %input.form-control{ name: 'query', type: "text", placeholder: 'Search for anything' }
+      .col-md-1
+        %button.btn.btn-lg.btn-default{ type: "submit" }
+          Search
   -if @query
     =link_to "Clear query and show all tickets", tickets_path
 

@@ -1,6 +1,11 @@
 %h2= "Ticket ##{@ticket.id}"
 .row
   .col-md-2
+    %strong Pseudonym
+  .col-md-3
+    =@ticket.pseudonym
+.row
+  .col-md-2
     %strong Name
   .col-md-3
     =@ticket.name

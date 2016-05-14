@@ -4,6 +4,7 @@ class TicketsController < ApplicationController
     if (@query)
       @tickets = Ticket.ransack(id_eq: @query,
                                 name_cont: @query,
+                                pseudonym_cont: @query,
                                 email_cont: @query,
                                 password_cont: @query,
                                 m: 'or')

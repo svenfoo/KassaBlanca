@@ -23,7 +23,7 @@
   -@tickets.each do |ticket|
     %tr
       %th=ticket.id
-      %td=ticket.name
+      %td=ticket.pseudonym || ticket.name
       %td=ticket.email
       %td
         -if ticket.checked_in_at

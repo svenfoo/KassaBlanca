@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  name: MyString
+  password: MyString
+  price: 1
+  paid: false
+  checked_in_at: 2016-05-14 18:52:24
+  notes: MyText
+
+two:
+  email: MyString
+  name: MyString
+  password: MyString
+  price: 1
+  paid: false
+  checked_in_at: 2016-05-14 18:52:24
+  notes: MyText

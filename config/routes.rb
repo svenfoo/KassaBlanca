@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :tickets do
     post :check_in
+    post :check_out
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

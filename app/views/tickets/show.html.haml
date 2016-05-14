@@ -42,6 +42,7 @@
           %span.label.label-success.label-lg
             =l @ticket.checked_in_at, format: :short
             %span.glyphicon.glyphicon-ok
+        =button_to "Check Out", ticket_check_out_path(@ticket), class: "btn btn-default"
     -else
       .col-md-5
         =button_to "Check In Now", ticket_check_in_path(@ticket), class: "btn btn-warning btn-lg"

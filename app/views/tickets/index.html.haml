@@ -1,15 +1,25 @@
 %h1 All Tickets
+.jumbotron
+  = form_tag(tickets_path,method: :get) do
+    .form-group
+      %input.form-control{ name: 'query', type: "text", placeholder: 'Search for anything' }
+      %button.btn.btn-lg.btn-default{ type: "submit" }
+        Search
 %table.table.table-striped
   %thead
     %tr
       %th ID
       %th Name
       %th Email
+      %th Checked In
       %th
   -@tickets.each do |ticket|
     %tr
       %th=ticket.id
       %td=ticket.name
       %td=ticket.email
+      %td
+        -if ticket.checked_in_at
+          %span.glyphicon.glyphicon-ok
       %td
         =link_to "Details", ticket

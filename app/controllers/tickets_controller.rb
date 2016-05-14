@@ -1,12 +1,22 @@
 class TicketsController < ApplicationController
   def index
-    @tickets=Ticket.all
+    @query = params[:query] unless params[:query].blank?
+    if (@query)
+      @tickets = Ticket.ransack(id: @query,
+                                name_cont: @query,
+                                email_cont: @query,
+                                password_cont: @query,
+                                m: 'or')
+                       .result(distinct: true)
+    else
+      @tickets = Ticket.all
+    end
   end
   def show
-    @ticket=Ticket.find(params[:id])
+    @ticket = Ticket.find(params[:id])
   end
   def check_in
-    @ticket=Ticket.find(params[:ticket_id])
+    @ticket = Ticket.find(params[:ticket_id])
     @ticket.checked_in_at=Time.now
     @ticket.save
     redirect_to @ticket

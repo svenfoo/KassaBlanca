@@ -1,16 +1,41 @@
-%h1= "Booking ID #{@ticket.id}"
-=@ticket.name
-%br
-=@ticket.email
-%br
-=@ticket.password
-%br
-=@ticket.paid
-%br
--if @ticket.checked_in_at
-  Checked in
-  =l @ticket.checked_in_at, format: :short
--else
-  =link_to "Check In Now", ticket_check_in_path(@ticket)
-%br
+%h2= "Ticket ##{@ticket.id}"
+.row
+  .col-md-2
+    %strong Name
+  .col-md-3
+    =@ticket.name
+.row
+  .col-md-2
+    %strong Email
+  .col-md-3
+    =@ticket.email
+.row
+  .col-md-2
+    %strong Password
+  .col-md-3
+    =@ticket.password
+.row
+  .col-md-2
+    %strong Payment
+  .col-md-3
+    -if @ticket.price?
+      =@ticket.price
+      EUR
+    -if @ticket.paid?
+      %span.glyphicon.glyphicon-ok
+    -else
+      %span.label.label-danger Not Paid
+.row
+  .col-md-2
+    %strong Checked In
+  .col-md-3
+    -if @ticket.checked_in_at?
+      Checked in
+      =l @ticket.checked_in_at, format: :short
+    -else
+      =link_to "Check In Now", ticket_check_in_path(@ticket)
+.row
+  .col-md-12
+    %hr
+
 =link_to "All Tickets", tickets_path

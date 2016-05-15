@@ -19,6 +19,12 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
   end
 
+  def update
+    @ticket = Ticket.find(params[:id])
+    @ticket.update(params[:ticket].permit(:notes))
+    redirect_to @ticket
+  end
+
   def check_in
     @ticket = Ticket.find(params[:ticket_id])
     @ticket.update_attribute(:checked_in_at, Time.now)

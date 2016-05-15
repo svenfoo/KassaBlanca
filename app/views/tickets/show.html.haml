@@ -52,6 +52,17 @@
   .row
     .col-md-12
 
+.well
+  =form_for @ticket do |f|
+    .row
+      .col-md-2
+        %strong Notes
+      .col-md-3
+        .form-group
+          =f.text_area :notes, class: "form-control"
+          %br
+          =f.submit "Save", class: "btn btn-primary btn-default"
+
 %hr
 =link_to tickets_path, role: "button" do
   %span.glyphicon.glyphicon-arrow-left

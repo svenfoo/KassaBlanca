@@ -8,9 +8,9 @@
           %input.form-control{:name => "query", :placeholder => "Search", :type => "text"}
         %button.btn.btn-default{:type => "submit"} Submit
       %text.nav.navbar-nav.navbar-right
-        #{number_of_tickets_checked_in} checked in
+        #{Ticket.checked_in.count} checked in
         %br
-        #{number_of_tickets_checked_in_today} checked in today
+        #{Ticket.checked_in_today.count} checked in today
 
 -if @query
   %h2= "Tickets matching '#{@query}'"

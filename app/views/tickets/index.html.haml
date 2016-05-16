@@ -2,7 +2,9 @@
 
 -if @query
   %h2= "Tickets matching '#{@query}'"
-  =link_to "Clear query and show all tickets", tickets_path
+  =button_to tickets_path, class: "btn btn-info", method: :get do
+    %span.glyphicon.glyphicon-remove
+    Clear filter and show all tickets
 -else
   %h2 All Tickets
 

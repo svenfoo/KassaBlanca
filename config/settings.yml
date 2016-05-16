@@ -1,0 +1,7 @@
+#
+# To change the config, please add a file called config/settings.local.yml and override the
+# values from there.
+#
+
+brand_name: "Brand Name"
+

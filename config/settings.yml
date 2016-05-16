@@ -5,3 +5,7 @@
 
 brand_name: "Brand Name"
 
+# For production environments, you need to add a secret key base. Generate one with 'rake secret',
+# and put it in your config/settings.local.yml, like so:
+#
+# secret_key_base: "-----"

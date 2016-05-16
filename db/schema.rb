@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514214416) do
+ActiveRecord::Schema.define(version: 20160516151844) do
 
   create_table "tickets", force: :cascade do |t|
     t.string   "email"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20160514214416) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "pseudonym"
+    t.string   "booking_id"
   end
+
+  add_index "tickets", ["booking_id"], name: "index_tickets_on_booking_id"
 
 end

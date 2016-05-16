@@ -10,7 +10,8 @@ namespace :KassaBlanca do
           checked_in_at = nil
         end
 
-        t = Ticket.create(name: Faker::Name.name,
+        t = Ticket.create(booking_id: Faker::Number.number(6),
+                          name: Faker::Name.name,
                           email: Faker::Internet.email,
                           password: Faker::Internet.password,
                           price: "#{rand(100)} €",

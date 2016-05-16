@@ -3,7 +3,7 @@ class TicketsController < ApplicationController
   def index
     @query = params[:query] unless params[:query].blank?
     if (@query)
-      @tickets = Ticket.ransack(id_eq: @query,
+      @tickets = Ticket.ransack(booking_id_eq: @query,
                                 name_cont: @query,
                                 pseudonym_cont: @query,
                                 email_cont: @query,

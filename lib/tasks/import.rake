@@ -20,7 +20,7 @@ namespace :KassaBlanca do
         next if row[0].to_i == 0
 
         t = Ticket.new
-        t.id = row[0]
+        t.booking_id = row[0]
         t.name = row[1]
         t.email = row[2]
         t.price = row[3][1..-1].to_i

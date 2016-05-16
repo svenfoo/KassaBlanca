@@ -1,7 +1,12 @@
 = render 'layouts/nav'
 
-%h2= "Ticket ##{@ticket.id}"
+%h2= "Ticket ##{@ticket.booking_id} (#{@ticket.id})"
 .well
+  .row
+    .col-md-2
+      %strong Booking ID
+    .col-md-3
+      =@ticket.booking_id
   .row
     .col-md-2
       %strong Pseudonym

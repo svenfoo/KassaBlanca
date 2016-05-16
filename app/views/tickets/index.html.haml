@@ -21,7 +21,7 @@
         %th
     -@tickets.each do |ticket|
       %tr
-        %th=ticket.id
+        %th=ticket.booking_id
         %td=ticket.pseudonym || ticket.name
         %td=ticket.email
         %td

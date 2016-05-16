@@ -62,6 +62,8 @@ GEM
     deep_merge (1.0.1)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.6.3)
+      i18n (~> 0.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -200,6 +202,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   config
+  faker
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails

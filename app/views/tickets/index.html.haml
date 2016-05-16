@@ -1,15 +1,15 @@
 = render 'layouts/nav'
 
 -if @query
-  %h2= "Tickets matching '#{@query}'"
-  =button_to tickets_path, class: "btn btn-info", method: :get do
+  =button_to tickets_path, class: "btn btn-info", style: "float:right", method: :get do
     %span.glyphicon.glyphicon-remove
     Clear filter and show all tickets
+  %h3= "Tickets matching '#{@query}'"
 -else
-  %h2 All Tickets
+  %h3 All Tickets
 
 -if @tickets.empty?
-  %h3= "No matches"
+  %h4= "No matches"
 -else
   %table.table.table-striped
     %thead

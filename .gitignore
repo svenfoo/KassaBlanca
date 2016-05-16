@@ -17,3 +17,5 @@
 /tmp
 
 .d8_history
+
+config/settings.local.yml

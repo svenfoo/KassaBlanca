@@ -1,37 +1,41 @@
--if @query
-  %h1= "Tickets matching '#{@query}'"
--else
-  %h1 All Tickets
-
-.jumbotron
-  = form_tag(tickets_path,method: :get) do
-    .row
-      .col-md-9
+%nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+  .container-fluid
+    .navbar-header
+      %a.navbar-brand{:href => "#"} #{Settings.brand_name}
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %form.navbar-form.navbar-left{:role => "search"}
         .form-group
-          %input.form-control{ name: 'query', type: "text", placeholder: 'Search for anything' }
-      .col-md-1
-        %button.btn.btn-lg.btn-default{ type: "submit" }
-          Search
-  -if @query
-    =link_to "Clear query and show all tickets", tickets_path
+          %input.form-control{:name => "query", :placeholder => "Search", :type => "text"}
+        %button.btn.btn-default{:type => "submit"} Submit
+      %text.nav.navbar-nav.navbar-right
+        #{number_of_tickets_checked_in} checked in
+        %br
+        #{number_of_tickets_checked_in_today} checked in today
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th ID
-      %th Name
-      %th Email
-      %th Checked In
-      %th
-  -@tickets.each do |ticket|
-    %tr
-      %th=ticket.id
-      %td=ticket.pseudonym || ticket.name
-      %td=ticket.email
-      %td
-        -if ticket.checked_in_at
-          %span.glyphicon.glyphicon-ok
-      %td
-        =link_to "Details", ticket
+-if @query
+  %h2= "Tickets matching '#{@query}'"
+  =link_to "Clear query and show all tickets", tickets_path
+-else
+  %h2 All Tickets
 
-%h4= "#{number_of_tickets_checked_in} checked in (#{number_of_tickets_checked_in_today} checked in today)"
+-if @tickets.empty?
+  %h3= "No matches"
+-else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th ID
+        %th Name
+        %th Email
+        %th Checked In
+        %th
+    -@tickets.each do |ticket|
+      %tr
+        %th=ticket.id
+        %td=ticket.pseudonym || ticket.name
+        %td=ticket.email
+        %td
+          -if ticket.checked_in_at
+            %span.glyphicon.glyphicon-ok
+        %td
+          =link_to "Details", ticket

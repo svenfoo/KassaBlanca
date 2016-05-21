@@ -26,6 +26,7 @@ namespace :KassaBlanca do
         t.price = row[3][1..-1].to_i
         t.pseudonym = row[4]
         t.password = row[5]
+        t.role = row[6]
         t.save
 
         i += 1

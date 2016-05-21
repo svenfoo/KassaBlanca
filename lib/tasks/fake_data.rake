@@ -18,7 +18,8 @@ namespace :KassaBlanca do
                           checked_in_at: checked_in_at,
                           paid: Faker::Boolean.boolean(0.5),
                           notes: Faker::Hacker.say_something_smart,
-                          pseudonym: Faker::Superhero.name)
+                          pseudonym: Faker::Superhero.name,
+                          role: ['referent', 'guest', nil].shuffle.first)
         puts "Created ticket \##{t.id}"
       end
     end

@@ -8,4 +8,12 @@
     = csrf_meta_tags
   %body
     .container
+      -if flash.any?
+        .row
+          .col-md-12
+            .flash
+              -flash.each do |msg_type, message|
+                %div{ class: "alert #{bootstrap_class_for(msg_type)} fade in", role: "alert" }
+                  %button.close{ data: { dismiss: 'alert' }} ×
+                  %span=message
       = yield

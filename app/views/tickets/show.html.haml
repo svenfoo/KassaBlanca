@@ -31,6 +31,16 @@
       %strong Password
     .col-md-3
       =@ticket.password
+
+-unless @ticket.role.blank?
+  .well
+    .row
+      .col-md-2
+        %strong Role
+      .col-md-3
+        %span.label.label-warning
+          =@ticket.role.capitalize
+
 .well
   .row
     .col-md-2
@@ -45,7 +55,8 @@
           -if @ticket.paid?
             %span.glyphicon.glyphicon-ok
           -else
-            %span.label.label-danger Not Paid
+            %span.label.label-danger
+              Not Paid
 .well
   .row
     -if @ticket.checked_in_at?

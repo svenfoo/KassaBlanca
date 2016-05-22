@@ -13,6 +13,9 @@ namespace :KassaBlanca do
   desc 'import data from CSV file'
   task import_csv: :environment do |_t, _args|
 
+    paid = ENV['paid'].present?
+    role = ENV['role']
+
     i = 0
 
     ActiveRecord::Base.transaction do
@@ -25,7 +28,6 @@ namespace :KassaBlanca do
         price = row[3][1..-1].to_i
         pseudonym = row[4]
         password = row[5]
-        role = row[6]
 
         if t = Ticket.find_by_booking_id(booking_id)
           if t.email != email
@@ -37,6 +39,7 @@ namespace :KassaBlanca do
             name:       name,
             email:      email,
             price:      price,
+            paid:       paid,
             pseudonym:  pseudonym,
             password:   password,
             role:       role)

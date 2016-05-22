@@ -38,25 +38,27 @@
       .col-md-2
         %strong Role
       .col-md-3
-        %span.label.label-warning
-          =@ticket.role.capitalize
+        %h4
+          %span.label.label-warning
+            =@ticket.role.capitalize
 
-.well
-  .row
-    .col-md-2
-      %strong Payment
-    .col-md-3
-      .row
-        .col-md-6
-          -if @ticket.price?
+-if @ticket.price?
+  .well
+    .row
+      .col-md-2
+        %strong Payment
+      .col-md-3
+        .row
+          .col-md-6
             =@ticket.price
             EUR
-        .col-md-4
-          -if @ticket.paid?
-            %span.glyphicon.glyphicon-ok
-          -else
-            %span.label.label-danger
-              Not Paid
+          .col-md-4
+            %h4
+              -if @ticket.paid?
+                %span.glyphicon.glyphicon-ok
+              -else
+                %span.label.label-danger
+                  Not Paid
 .well
   .row
     -if @ticket.checked_in_at?

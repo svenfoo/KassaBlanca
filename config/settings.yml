@@ -3,7 +3,16 @@
 # values from there.
 #
 
+# Name to be shown in the header
 brand_name: "Brand Name"
+
+# Uncomment to following lines to get special alerts when a ticket
+# matching a certain role is checked in.
+#
+# roles:
+#   speaker:
+#     checked_in_flash_type: alert
+#     checked_in_flash_message: Speakers are asked to register at the help desk
 
 # For production environments, you need to add a secret key base. Generate one with 'rake secret',
 # and put it in your config/settings.local.yml, like so:

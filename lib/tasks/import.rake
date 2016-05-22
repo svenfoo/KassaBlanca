@@ -19,17 +19,30 @@ namespace :KassaBlanca do
       CSV.foreach('import.csv', return_headers: false) do |row|
         next if row[0].to_i == 0
 
-        t = Ticket.new
-        t.booking_id = row[0]
-        t.name = row[1]
-        t.email = row[2]
-        t.price = row[3][1..-1].to_i
-        t.pseudonym = row[4]
-        t.password = row[5]
-        t.role = row[6]
-        t.save
+        booking_id = row[0]
+        name = row[1]
+        email = row[2]
+        price = row[3][1..-1].to_i
+        pseudonym = row[4]
+        password = row[5]
+        role = row[6]
 
-        i += 1
+        if t = Ticket.find_by_booking_id(booking_id)
+          if t.email != email
+            puts "Ticket with booking ID #{t.booking_id} exists, but with a different email address!"
+          end
+        else
+          Ticket.create(
+            booking_id: booking_id,
+            name:       name,
+            email:      email,
+            price:      price,
+            pseudonym:  pseudonym,
+            password:   password,
+            role:       role)
+          i += 1
+        end
+
       end
     end
 

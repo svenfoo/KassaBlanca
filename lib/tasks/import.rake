@@ -15,6 +15,7 @@ namespace :KassaBlanca do
 
     paid = ENV['paid'].present?
     role = ENV['role']
+    notes_column = ENV['notes'].present? ? ENV['notes'].to_i : 0
 
     i = 0
 
@@ -28,6 +29,7 @@ namespace :KassaBlanca do
         price = row[3][1..-1].to_i
         pseudonym = row[4]
         password = row[5]
+        notes = notes_column > 5 ? row[notes_column] : nil
 
         if t = Ticket.find_by_booking_id(booking_id)
           if t.email != email
@@ -42,7 +44,8 @@ namespace :KassaBlanca do
             paid:       paid,
             pseudonym:  pseudonym,
             password:   password,
-            role:       role)
+            role:       role,
+            notes:      notes)
           i += 1
         end
 

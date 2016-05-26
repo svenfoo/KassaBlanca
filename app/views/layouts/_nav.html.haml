@@ -7,7 +7,7 @@
         %li
           = form_tag(tickets_path, method: :get, role: "search", class: "navbar-form navbar-left") do
             .form-group
-              %input.form-control{:name => "query", :placeholder => "Search", :type => "text"}
+              %input.form-control{:name => "query", placeholder: "Search", autofocus: "true", id: "query-field" }
               %button.btn.btn-default{:type => "submit"} Submit
 
       %ul.nav.navbar-nav.navbar-right

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     post :check_out
   end
 
+  post '/check_in_with_new', to: "tickets#check_in_with_new"
   root 'tickets#index'
-
 end

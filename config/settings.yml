@@ -18,3 +18,13 @@ brand_name: "Brand Name"
 # and put it in your config/settings.local.yml, like so:
 #
 # secret_key_base: "-----"
+
+# new_ticket:
+#   defaults:
+#     name:
+#     email:
+#     pseudonym:
+#     password:
+#     price:
+#     role:
+#     notes:

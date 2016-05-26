@@ -25,6 +25,29 @@ class TicketsController < ApplicationController
     redirect_to @ticket
   end
 
+  def new
+    if Settings.new_ticket and Settings.new_ticket.defaults
+      defaults = Settings.new_ticket.defaults.to_hash
+    else
+      defaults = {}
+    end
+
+    @ticket = Ticket.new(defaults)
+  end
+
+  def create
+    @ticket = Ticket.new(ticket_params)
+    if Settings.new_ticket and Settings.new_ticket.check_in_after_create
+      @ticket.checked_in_at = Time.now
+    end
+
+    if @ticket.save
+      redirect_to @ticket
+    else
+      render :new
+    end
+  end
+
   def check_in
     @ticket = Ticket.find(params[:ticket_id])
     @ticket.update_attribute(:checked_in_at, Time.now)
@@ -44,6 +67,10 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:ticket_id])
     @ticket.update_attribute(:checked_in_at, nil)
     redirect_to @ticket
+  end
+
+  def ticket_params
+    params.require(:ticket).permit(:name, :pseudonym, :email, :password, :price, :role, :notes)
   end
 
 end

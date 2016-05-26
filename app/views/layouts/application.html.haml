@@ -16,4 +16,5 @@
                 %div{ class: "alert #{bootstrap_class_for(msg_type)} fade in", role: "alert" }
                   %button.close{ data: { dismiss: 'alert' }} ×
                   %span=message
+      = render 'layouts/nav'
       = yield

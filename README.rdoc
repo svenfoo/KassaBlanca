@@ -1,28 +1,19 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple cashier system that we wrote for and used successfully
+on an event with about a thousand visitors.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It allows to easily validate tickets that have been sold before and
+keeps track of the number of visitors that have checked in over the
+course of the day.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+To get all the dependencies (and probably some more) installed run
+    bundle install
+
+Create some test data to get started:
+    rake KassaBlanca:add_fake_data
+
+Start the application:
+    rails server
+

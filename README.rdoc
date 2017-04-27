@@ -8,7 +8,7 @@ keeps track of the number of visitors that have checked in over the
 course of the day.
 
 
-To get all the dependencies (and probably some more) installed run
+To get all the dependencies (and probably some more) installed run:
     bundle install
 
 Create some test data to get started:

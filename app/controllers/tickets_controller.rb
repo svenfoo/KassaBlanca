@@ -57,9 +57,9 @@ class TicketsController < ApplicationController
   def check_in
     @ticket = Ticket.find(params[:ticket_id])
     @ticket.update_attribute(:checked_in_at, Time.now)
-    if @ticket.role
-      flash_type = Settings.roles[@ticket.role]&.checked_in_flash_type || 'success'
-      flash_message = Settings.roles[@ticket.role]&.checked_in_flash_message || 'Checked in successfully.'
+    if @ticket.role && Settings.roles[@ticket.role]
+      flash_type = Settings.roles[@ticket.role].checked_in_flash_type || 'success'
+      flash_message = Settings.roles[@ticket.role].checked_in_flash_message || 'Checked in successfully.'
     else
       flash_type = 'success'
       flash_message = 'Checked in successfully.'

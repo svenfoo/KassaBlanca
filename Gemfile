@@ -32,7 +32,7 @@ gem 'simple_form'
 gem 'pry-rails'
 
 group :production do
-  gem 'unicorn'
+  gem 'passenger'
   gem 'pg'
 end
 

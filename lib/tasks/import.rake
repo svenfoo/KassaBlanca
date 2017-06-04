@@ -8,6 +8,11 @@ require 'csv'
 # Email
 # Total
 #
+# Environment variables:
+#   paid:         paid flag for all tickets imported from this source
+#   role:         role for all tickets imported from this source
+#   created_by:   name of the import source
+#   notes_column: column with notes to import
 
 namespace :KassaBlanca do
   desc 'import data from CSV file'
@@ -15,6 +20,7 @@ namespace :KassaBlanca do
 
     paid = ENV['paid'].present?
     role = ENV['role']
+    created_by = ENV['created_by']
     notes_column = ENV['notes'].present? ? ENV['notes'].to_i : 0
 
     i = 0
@@ -45,6 +51,7 @@ namespace :KassaBlanca do
             pseudonym:  pseudonym,
             password:   password,
             role:       role,
+            created_by: created_by,
             notes:      notes)
           i += 1
         end

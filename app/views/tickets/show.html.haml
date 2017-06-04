@@ -29,6 +29,11 @@
       %strong Password
     .col-md-3
       =@ticket.password
+  .row
+    .col-md-2
+      %strong Created by
+    .col-md-3
+      =@ticket.created_by
 
 -unless @ticket.role.blank?
   .well

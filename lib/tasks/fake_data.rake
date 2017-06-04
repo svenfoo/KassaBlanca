@@ -1,3 +1,4 @@
+# coding: utf-8
 namespace :KassaBlanca do
 
   desc 'add fake tickets'
@@ -19,7 +20,8 @@ namespace :KassaBlanca do
                           paid: Faker::Boolean.boolean(0.5),
                           notes: Faker::Hacker.say_something_smart,
                           pseudonym: Faker::Superhero.name,
-                          role: [nil, 'guest', 'speaker'].shuffle.first)
+                          role: [nil, 'guest', 'speaker'].shuffle.first,
+                          created_by: 'faker')
         puts "Created ticket \##{t.id}"
       end
     end

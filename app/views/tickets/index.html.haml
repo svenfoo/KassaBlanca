@@ -1,32 +1,34 @@
 -if @query
   =button_to tickets_path, class: "btn btn-info", style: "float:right", method: :get do
     %span.glyphicon.glyphicon-remove
-    Clear filter and show all tickets
+    Clear filter
   %h3= "Tickets matching '#{@query}'"
--else
-  %h3 All Tickets
 
--if @tickets.empty?
-  %h4= "No matches"
+  -if @tickets.any?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th ID
+          %th Name
+          %th Email
+          %th Checked In
+          %th
+      -@tickets.each do |ticket|
+        %tr
+          %th=ticket.booking_id
+          %td=ticket.pseudonym.blank? ? ticket.name : ticket.pseudonym
+          %td=ticket.email
+          %td
+            -if ticket.checked_in_at
+              %span.glyphicon.glyphicon-ok
+          %td
+            =link_to "Details", ticket
+  -else
+    %h4= "No matches"
+
 -else
-  %table.table.table-striped
-    %thead
-      %tr
-        %th ID
-        %th Name
-        %th Email
-        %th Checked In
-        %th
-    -@tickets.each do |ticket|
-      %tr
-        %th=ticket.booking_id
-        %td=ticket.pseudonym.blank? ? ticket.name : ticket.pseudonym
-        %td=ticket.email
-        %td
-          -if ticket.checked_in_at
-            %span.glyphicon.glyphicon-ok
-        %td
-          =link_to "Details", ticket
+  %h3 No query
+  %h4 Go search!
 
 %hr
   =button_to check_in_with_new_path, class: "btn btn-info" do

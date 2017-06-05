@@ -3,13 +3,17 @@ class TicketsController < ApplicationController
   def index
     @query = params[:query] unless params[:query].blank?
     if (@query)
-      @tickets = Ticket.ransack(booking_id_eq: @query,
-                                name_cont: @query,
-                                pseudonym_cont: @query,
-                                email_cont: @query,
-                                password_cont: @query,
-                                m: 'or')
-                       .result(distinct: true)
+      if (@query.length > 2)
+        @tickets = Ticket.ransack(booking_id_eq: @query,
+                                  name_cont: @query,
+                                  pseudonym_cont: @query,
+                                  email_cont: @query,
+                                  password_cont: @query,
+                                  m: 'or')
+                         .result(distinct: true)
+      else
+        @tickets = []
+      end
     else
       @tickets = Ticket.all
     end

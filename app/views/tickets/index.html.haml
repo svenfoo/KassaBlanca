@@ -12,6 +12,7 @@
           %th Name
           %th Email
           %th Checked In
+          %th Role
           %th
       -@tickets.each do |ticket|
         %tr
@@ -21,6 +22,10 @@
           %td
             -if ticket.checked_in_at
               %span.glyphicon.glyphicon-ok
+          %td
+            -if ticket.role
+              %span.label.label-warning
+                =ticket.role.capitalize
           %td
             =link_to "Details", ticket
   -else

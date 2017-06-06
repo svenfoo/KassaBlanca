@@ -48,12 +48,6 @@ class TicketsController < ApplicationController
     end
   end
 
-  def check_in_with_new
-    @ticket = Ticket.create(name: "Anonymous", notes: "Checked in anonymously", created_by: "anonymous")
-    @ticket.update_attribute(:checked_in_at, Time.now)
-    redirect_to tickets_path, flash: { success: "Checked in with new ticket!" }
-  end
-
   def check_in
     @ticket = Ticket.find(params[:ticket_id])
     @ticket.update_attribute(:checked_in_at, Time.now)

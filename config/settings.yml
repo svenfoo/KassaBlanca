@@ -6,6 +6,9 @@
 # Name to be shown in the header
 brand_name: "Brand Name"
 
+# Uncomment to hide stats in the navigation bar
+# hide_stats: true
+
 # Uncomment to following lines to get special alerts when a ticket
 # matching a certain role is checked in.
 #

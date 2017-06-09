@@ -10,11 +10,12 @@
               %input.form-control{:name => "query", placeholder: "Search", autofocus: "true", id: "query-field" }
               %button.btn.btn-default{:type => "submit"} Submit
 
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          %p.navbar-text
-            #{Ticket.checked_in.count} checked in total
+      -unless Settings.hide_stats
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %p.navbar-text
+              #{Ticket.checked_in.count} checked in total
 
-        %li
-          %p.navbar-text
-            #{Ticket.checked_in_today.count} checked in today
+          %li
+            %p.navbar-text
+              #{Ticket.checked_in_today.count} checked in today

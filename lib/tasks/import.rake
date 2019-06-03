@@ -56,9 +56,37 @@ namespace :KassaBlanca do
           i += 1
         end
 
+  desc 'import data from pretix json'
+  task import_pretix: :environment do |_t, args|
+    content = File.read('pretix.json')
+    json = JSON.parse(content)
+    orders = json["event"]["orders"]
+
+    role = ENV['role'] || 'guest'
+    created_by = 'pretix'
+
+    i = 0
+
+    orders.each do |order|
+      code = order['code']
+      email = order['user']
+      paid = order['status'] == 'p'
+
+      order['positions'].each do |position|
+        price = position['price']
+
+        Ticket.create(
+          booking_id: code,
+          email:      email,
+          price:      price,
+          paid:       paid,
+          role:       role,
+          created_by: created_by)
+        i += 1
       end
     end
 
     puts "Imported #{i} ticket records."
+
   end
 end

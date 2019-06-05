@@ -21,7 +21,13 @@ class TicketsController < ApplicationController
 
   def update
     @ticket = Ticket.find(params[:id])
-    @ticket.update(params[:ticket].permit(:notes))
+    @ticket.update(params[:ticket].permit(:notes, :price))
+    if params[:ticket][:price].present?
+      @ticket.update_attribute(:paid, true)
+      @ticket.update_attribute(:paid_at_checkin, true)
+      check_in
+      return
+    end
     redirect_to @ticket
   end
 
@@ -49,7 +55,7 @@ class TicketsController < ApplicationController
   end
 
   def check_in
-    @ticket = Ticket.find(params[:ticket_id])
+    @ticket ||= Ticket.find(params[:ticket_id])
     @ticket.update_attribute(:checked_in_at, Time.now)
     if @ticket.role && Settings.roles[@ticket.role]
       flash_type = Settings.roles[@ticket.role].checked_in_flash_type || 'success'

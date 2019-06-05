@@ -45,23 +45,23 @@
           %span.label.label-warning
             =@ticket.role.capitalize
 
--if @ticket.price?
-  .well
-    .row
-      .col-md-2
-        %strong Payment
-      .col-md-3
-        .row
-          .col-md-6
-            =@ticket.price
-            EUR
-          .col-md-4
-            %h4
-              -if @ticket.paid?
-                %span.glyphicon.glyphicon-ok
-              -else
-                %span.label.label-danger
-                  Not Paid
+.well
+  .row
+    .col-md-2
+      %strong Payment
+    .col-md-3
+      .row
+        .col-md-6
+          =@ticket.price
+          EUR
+        .col-md-4
+          %h4
+            -if @ticket.paid?
+              %span.glyphicon.glyphicon-ok
+            -else
+              %span.label.label-danger
+                Not Paid
+
 .well
   .row
     -if @ticket.checked_in_at?
@@ -74,8 +74,22 @@
           .col-md-4
             =button_to "Check Out", ticket_check_out_path(@ticket), class: "btn btn-default btn-xs"
     -else
-      .col-md-5
-        =button_to "Check In Now", ticket_check_in_path(@ticket), class: "btn btn-warning btn-lg"
+      -if @ticket.paid?
+        .col-md-5
+          =button_to "Check In Now", ticket_check_in_path(@ticket), class: "btn btn-warning btn-lg"
+      -else
+        .col-md-8
+          =form_for @ticket do |f|
+            .row
+              .col-md-2
+                %strong Paid amount
+              .col-md-3
+                .form-group
+                  =f.text_field :price, class: "form-control"
+              .col-md-3
+                .form-group
+                  =f.submit "Check in with payment", class: "btn btn-primary btn-default"
+
   .row
     .col-md-12
 

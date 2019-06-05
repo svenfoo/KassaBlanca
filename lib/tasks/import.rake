@@ -87,6 +87,37 @@ namespace :KassaBlanca do
     end
 
     puts "Imported #{i} ticket records."
-
   end
+
+  desc 'import speakers from frab'
+  task import_speakers: :environment do |_t, args|
+    created_by = ENV['created_by']
+    notes = ENV['notes']
+    price = ENV['price']
+    notes_column = ENV['notes_column'].present? ? ENV['notes_column'].to_i : 0
+
+    i = 0
+
+    ActiveRecord::Base.transaction do
+      CSV.foreach('speakers.csv', return_headers: true) do |row|
+        name = row[0]
+        email = row[1]
+        notes = "Events: " + row[2]
+
+        Ticket.create(
+          pseudonym:  name,
+          email:      email,
+          price:      0,
+          paid:       false,
+          role:       'speaker',
+          created_by: 'frab',
+          notes:      notes)
+
+        i += 1
+      end
+    end
+
+    puts "Imported #{i} ticket records."
+  end
+
 end

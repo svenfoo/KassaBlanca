@@ -11,6 +11,9 @@ course of the day.
 To get all the dependencies (and probably some more) installed run:
     bundle install
 
+Create the sqlite database:
+    rake db:migrate
+
 Create some test data to get started:
     rake KassaBlanca:add_fake_data
 
